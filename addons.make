@@ -1,0 +1,9 @@
+ofxOpenCv
+ofxOsc
+ofxSvg
+ofxXmlSettings
+ofxHTTP
+ofxIO
+ofxMediaType
+ofxSSLManager
+ofxTaskQueue
