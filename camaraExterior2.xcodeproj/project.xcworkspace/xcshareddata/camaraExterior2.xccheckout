@@ -6,12 +6,16 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A43D7CD3-0A35-4786-A8D8-EA1BE24525D8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>camaraExterior2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6D6FDB373C9A9EB614FB047E30EC71CD5377F13C</key>
 		<string>https://github.com/bakercp/ofxSSLManager.git</string>
 		<key>6DBA07F83F7AF99DB5F116332E6446603283BF4C</key>
 		<string>https://github.com/bakercp/ofxHTTP.git</string>
+		<key>C0930E3130BF2D763CD68085D01B8180583C60AD</key>
+		<string>github.com:ludiccc/CCEBA_Camara.git</string>
 		<key>CA29DB320F881B85D76220FC5498A4D1FA4F037C</key>
 		<string>https://github.com/bakercp/ofxIO.git</string>
 		<key>CC64F4963C935629E4EEDB8221C0DA9B68D2313F</key>
@@ -19,27 +23,39 @@
 		<key>CE427DFEAC7CF46E0343E32288BC15C14F0689BB</key>
 		<string>github.com:bakercp/ofxTaskQueue.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>camaraExterior2.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6D6FDB373C9A9EB614FB047E30EC71CD5377F13C</key>
-		<string>ofxSSLManager/</string>
+		<string>../../../../../addons/ofxSSLManager</string>
 		<key>6DBA07F83F7AF99DB5F116332E6446603283BF4C</key>
-		<string>ofxHTTP/</string>
+		<string>../../../../../addons/ofxHTTP</string>
+		<key>C0930E3130BF2D763CD68085D01B8180583C60AD</key>
+		<string>../..</string>
 		<key>CA29DB320F881B85D76220FC5498A4D1FA4F037C</key>
-		<string>ofxIO/</string>
+		<string>../../../../../addons/ofxIO</string>
 		<key>CC64F4963C935629E4EEDB8221C0DA9B68D2313F</key>
-		<string>ofxMediaType/</string>
+		<string>../../../../../addons/ofxMediaType</string>
 		<key>CE427DFEAC7CF46E0343E32288BC15C14F0689BB</key>
-		<string>ofxTaskQueue/</string>
+		<string>../../../../../addons/ofxTaskQueue</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/bakercp/ofxSSLManager.git</string>
+	<string>github.com:ludiccc/CCEBA_Camara.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6D6FDB373C9A9EB614FB047E30EC71CD5377F13C</string>
+	<string>C0930E3130BF2D763CD68085D01B8180583C60AD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C0930E3130BF2D763CD68085D01B8180583C60AD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>camaraExterior2</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

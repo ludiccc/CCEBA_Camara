@@ -15,23 +15,20 @@ void Operador::setup(string remoteIP, int remotePort) {
     
 }
 
-void Operador::update(ofImage img) {
+void Operador::update(ofImage img, int caras) {
     ofBuffer * buffer = new ofBuffer;
     
     
-    img.resize(320/2,240/2);
-    ofSaveImage(img.getPixelsRef(), *buffer, OF_IMAGE_FORMAT_PNG, OF_IMAGE_QUALITY_WORST);
+    img.resize(320/3,240/3);
+    ofSaveImage(img.getPixelsRef(), *buffer); //, OF_IMAGE_FORMAT_JPEG, OF_IMAGE_QUALITY_WORST);
     
     ofxOscMessage m;
     m.setAddress("/image");
     m.addBlobArg(*buffer);
     maquinaOperador.sendMessage(m);
     
-    m.setAddress("/test");
-    m.addIntArg(1);
-    m.addFloatArg(3.5f);
-    m.addStringArg("hello");
-    m.addFloatArg(ofGetElapsedTimef());
+    m.setAddress("/carasDetectadas");
+    m.addIntArg(caras);
     maquinaOperador.sendMessage(m);
 
 }

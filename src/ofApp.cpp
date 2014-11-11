@@ -53,7 +53,7 @@ void ofApp::update(){
 
         img.setFromPixels(imagenCamara.video.getPixels(), imagenCamara.video.width, imagenCamara.video.height, OF_IMAGE_COLOR);
     
-        operador.update(img);
+        operador.update(img, imagenCamara.blobs.size());
         proximoEnvioAlperador = ofGetElapsedTimeMillis() + 500;
     }
     if (thisAnimation == 0) animacion1.update();
@@ -69,8 +69,8 @@ void ofApp::draw(){
     else if (thisAnimation == 1) animacion2.draw();
     else if (thisAnimation == 2) animacion3.draw();
     else if (thisAnimation == 3) animacion4.draw();
-    for(int i = 0; i < imagenCamara.finder.blobs.size(); i++) {
-        ofRectangle cur = imagenCamara.finder.blobs[i].boundingRect;
+    for(int i = 0; i < imagenCamara.blobs.size(); i++) {
+        ofRectangle cur = imagenCamara.blobs[i].boundingRect;
         cur.x *= 3.2;
         cur.y *= 3.2;
         cur.width *= 3.2;
@@ -124,4 +124,10 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::exit() {
+    
+    // stop the thread
+    imagenCamara.analizadorDeCaras.stopThread();
 }

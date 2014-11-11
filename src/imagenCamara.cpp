@@ -28,27 +28,29 @@ void ImagenCamara::setup() {
     video.setDesiredFrameRate(60);
     video.initGrabber(320,240);
     
-    finder.setup("haarcascade_frontalface_alt.xml");
-    
+    //analizadorDeCaras.startThread();
 }
 
 void ImagenCamara::update() {
+    
+    // si el analizador no está tocando el finder, entonces copio el vector de blobs.
+    /*if (analizadorDeCaras.available()) {
+        blobs = analizadorDeCaras.finder.blobs;
+    }*/
+    
     video.update();
     
     if (video.isFrameNew()){
-        
-        ofxCvColorImage colorImg;
-        colorImg.allocate(video.width,video.height);
-        colorImg.setFromPixels(video.getPixelsRef());
-        ofxCvGrayscaleImage grayImage;
-        grayImage = colorImg;
-        /*
-         int totalPixels = camWidth*camHeight*3;
-         unsigned char * pixels = vidGrabber.getPixels();
-         unsigned char * pixelsDest = img.getPixels();
-         for (int i = 0; i < totalPixels; i++){
-         pixelsDest[i] = pixels[i];
-         }*/
-        finder.findHaarObjects(grayImage, 80, 80);
+        // esta conversión es necesaria para poder hacer la detección con el OpenCV
+        //colorImg.allocate(video.width,video.height);
+        //colorImg.setFromPixels(video.getPixelsRef());
+
+        // Me fijo si el thread de análisis está libre y si es así, le cargo una imagen
+        // nueva para su detección, y le aviso.
+        /*if (analizadorDeCaras.available()) {
+            ofxCvGrayscaleImage gI;
+            gI = colorImg;
+            analizadorDeCaras.search(gI);
+        }*/
     }
 }

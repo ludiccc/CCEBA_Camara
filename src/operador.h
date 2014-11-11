@@ -22,7 +22,7 @@ public:
     void setup(string remoteIP, int remotePort);
     ofxOscSender maquinaOperador;
     
-    void update(ofImage img);
+    void update(ofImage img, int caras);
 };
 
 #endif /* defined(__camaraExterior2__operador__) */
