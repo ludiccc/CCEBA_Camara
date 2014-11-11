@@ -19,8 +19,8 @@ void Operador::update(ofImage img) {
     ofBuffer * buffer = new ofBuffer;
     
     
-    img.resize(320/3,240/3);
-    ofSaveImage(img.getPixelsRef(), *buffer);
+    img.resize(320/2,240/2);
+    ofSaveImage(img.getPixelsRef(), *buffer, OF_IMAGE_FORMAT_PNG, OF_IMAGE_QUALITY_WORST);
     
     ofxOscMessage m;
     m.setAddress("/image");
