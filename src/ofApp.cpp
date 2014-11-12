@@ -14,7 +14,7 @@ void ofApp::setup(){
     
     thisAnimation = XML.getValue("ANIMACION", 0);
     
-    motor.tiempoDeGiro = XML.getValue("TIEMPODEGIRO", 2);
+    motor.tiempoDeGiro = XML.getValue("TIEMPODEGIRO", 200);
         
     imagenCamara.setup();
     
@@ -35,6 +35,7 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    motor.update();
     imagenCamara.update();
     
     // check for waiting messages
@@ -43,7 +44,7 @@ void ofApp::update(){
         ofxOscMessage m;
         receiver.getNextMessage(&m);
         
-        cout << "Mensaje recibido:" << m.getArgAsInt32(0) << "\n";
+        cout << "Mensaje recibido:" << m.getAddress() << ":" << m.getArgAsInt32(0) << "\n";
         
         // check for mouse moved message
         if(m.getAddress() == "/motor/position"){
@@ -72,7 +73,7 @@ void ofApp::draw(){
     else if (thisAnimation == 1) animacion2.draw();
     else if (thisAnimation == 2) animacion3.draw();
     else if (thisAnimation == 3) animacion4.draw();
-    for(int i = 0; i < imagenCamara.blobs.size(); i++) {
+    for(unsigned int i = 0; i < imagenCamara.blobs.size(); i++) {
         ofRectangle cur = imagenCamara.blobs[i].boundingRect;
         cur.x *= 3.2;
         cur.y *= 3.2;

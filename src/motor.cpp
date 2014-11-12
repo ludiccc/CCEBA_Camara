@@ -19,20 +19,29 @@ Motor::Motor() {
     // le indico que debe moverse a la derecha por default durante 10 segundos para llegar al tope
     digitalWrite (0, HIGH) ;
     digitalWrite (1,  LOW) ;
+    ofSleepMillis(20);
     
 #endif
-    proximoTimeout = ofGetElapsedTimeMillis() + 10;
+    proximoTimeout = ofGetElapsedTimeMillis() + 10*1000;
 }
 
 void Motor::update() {
     if (ofGetElapsedTimeMillis() > proximoTimeout) {
         if (estado == INICIALIZANDO) {
-            estado = READY;
-        } else if (estado == MOVIENDO) {
+            cout << "Se termino de inicializar..\n";
             estado = READY;
 #if !defined(__APPLE__)
             digitalWrite (0,  LOW) ;
             digitalWrite (1,  LOW) ;
+            ofSleepMillis(20);
+#endif
+        } else if (estado == MOVIENDO) {
+            cout << "Se termino de mover..\n";
+            estado = READY;
+#if !defined(__APPLE__)
+            digitalWrite (0,  LOW) ;
+            digitalWrite (1,  LOW) ;
+            ofSleepMillis(20);
 #endif
         }
         
@@ -41,14 +50,18 @@ void Motor::update() {
         if (estado == READY && posicionProxima > -1) {
             estado = MOVIENDO;
             if (posicionActual > posicionProxima) {
+                cout << "Se movera en direccion 1..\n";
 #if !defined(__APPLE__)
                 digitalWrite (0,  HIGH) ;
                 digitalWrite (1,  LOW) ;
+                ofSleepMillis(20);
 #endif
             } else {
+                cout << "Se movera en direccion -1..\n";
 #if !defined(__APPLE__)
                 digitalWrite (0,  LOW) ;
                 digitalWrite (1,  HIGH) ;
+                ofSleepMillis(20);
 #endif
             }
             
@@ -60,28 +73,10 @@ void Motor::update() {
             proximoTimeout = ofGetElapsedTimeMillis()+tiempoDeDesplazamiento; // el tiempo que se tarde en llegar a esa posicion.
         }
     }
-
-#if !defined(__APPLE__)
-    
-    if (estado == READY) {
-        // hago el cálculo de para donde se tiene que mover...
-        
-    }
-    
-    if (pos == 100) {
-        digitalWrite (0, HIGH) ;
-        digitalWrite (1,  LOW) ;
-    } else if (pos == 200) {
-        digitalWrite (0,  LOW) ;
-        digitalWrite (1,  HIGH) ;
-    } else {
-        digitalWrite (0,  LOW) ;
-        digitalWrite (1,  LOW) ;
-    }
-#endif
 }
 
 void Motor::setPosicion(int pos) {
+    cout << "Seteando proxima posicion: " << pos << " (posicion actual: " << posicionActual << ")\n";
     posicionProxima = pos;
 
 }
