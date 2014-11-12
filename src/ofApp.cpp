@@ -13,6 +13,8 @@ void ofApp::setup(){
     remotePort = XML.getValue("DESTPORT", 12345);
     
     thisAnimation = XML.getValue("ANIMACION", 0);
+    
+    motor.tiempoDeGiro = XML.getValue("TIEMPODEGIRO", 2);
         
     imagenCamara.setup();
     
@@ -27,6 +29,7 @@ void ofApp::setup(){
     receiver.setup(thisPort);
     
     operador.setup(remoteIP, remotePort);
+    operador.startThread();
     
 }
 
@@ -51,9 +54,9 @@ void ofApp::update(){
     if (proximoEnvioAlperador < ofGetElapsedTimeMillis()) {
         ofImage img;
 
-        img.setFromPixels(imagenCamara.video.getPixels(), imagenCamara.video.width, imagenCamara.video.height, OF_IMAGE_COLOR);
+        //img.setFromPixels(imagenCamara.video.getPixels(), imagenCamara.video.width, imagenCamara.video.height, OF_IMAGE_COLOR);
     
-        operador.update(img, imagenCamara.blobs.size());
+        operador.update(imagenCamara.video.getPixelsRef(), imagenCamara.blobs.size());
         proximoEnvioAlperador = ofGetElapsedTimeMillis() + 500;
     }
     if (thisAnimation == 0) animacion1.update();

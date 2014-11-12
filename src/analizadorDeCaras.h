@@ -25,8 +25,9 @@ public:
 
     //-------------------------------
     // blocking functions
-    void search(unsigned char *pixels, int w, int h);
-    void search(ofxCvGrayscaleImage img);
+    void search(unsigned char *pixs, int w, int h);
+    void search(ofPixelsRef pixelsRef);
+    void search(ofImage img);
     
     
     ofxCvGrayscaleImage grayscaleImage;
@@ -34,9 +35,13 @@ public:
 
     // the thread function
     void threadedFunction();
-
+    unsigned char *pixels;
+    
 protected:
     bool processing;
+    
+    
+    
     
 };
 

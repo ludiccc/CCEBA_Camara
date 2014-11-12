@@ -16,13 +16,30 @@
 #define HOST "192.168.1.131"
 #define PORT 12345
 
+#include "Poco/Mutex.h"
 
-class Operador {
+
+class Operador : public ofThread {
 public:
+    //-------------------------------
+    // non blocking functions
+    bool available() { return !processing; };
     void setup(string remoteIP, int remotePort);
-    ofxOscSender maquinaOperador;
     
-    void update(ofImage img, int caras);
+    //-------------------------------
+    // blocking functions
+    void update(ofPixelsRef pixelsref, int caras);
+    
+    //-------------------------------
+    // the thread function
+    void threadedFunction();
+    
+    ofxOscSender maquinaOperador;
+    ofBuffer * buffer;
+
+protected:
+    bool processing;
+    
 };
 
 #endif /* defined(__camaraExterior2__operador__) */

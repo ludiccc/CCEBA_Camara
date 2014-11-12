@@ -15,20 +15,43 @@ void Operador::setup(string remoteIP, int remotePort) {
     
 }
 
-void Operador::update(ofImage img, int caras) {
-    ofBuffer * buffer = new ofBuffer;
+void Operador::update(ofPixelsRef pixelsref, int caras) {
+    if (!processing) {
+        buffer = new ofBuffer;
     
     
-    img.resize(320/3,240/3);
-    ofSaveImage(img.getPixelsRef(), *buffer); //, OF_IMAGE_FORMAT_JPEG, OF_IMAGE_QUALITY_WORST);
+        //img.resize(320/3,240/3);
+        ofSaveImage(pixelsref, *buffer); //, OF_IMAGE_FORMAT_JPEG, OF_IMAGE_QUALITY_WORST);
+        processing = true;
+    }
     
-    ofxOscMessage m;
-    m.setAddress("/image");
-    m.addBlobArg(*buffer);
-    maquinaOperador.sendMessage(m);
     
-    m.setAddress("/carasDetectadas");
+    
+/*    m.setAddress("/carasDetectadas");
     m.addIntArg(caras);
     maquinaOperador.sendMessage(m);
+*/
+}
 
+void Operador::threadedFunction() {
+    
+    // start
+    
+    while( isThreadRunning() == true ){
+        lock();
+        
+        if (processing) {
+            ofxOscMessage m;
+            m.setAddress("/image");
+            m.addBlobArg(*buffer);
+            //maquinaOperador.sendMessage(m);
+            
+            processing = false;
+        }
+        unlock();
+        
+        ofSleepMillis(100);
+    }
+    
+    // done
 }

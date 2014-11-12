@@ -12,31 +12,30 @@ static ofxCvGrayscaleImage gI;
 AnalizadorDeCaras::AnalizadorDeCaras() {
     finder.setup("haarcascade_frontalface_alt.xml");
     processing = false;
-    grayscaleImage.allocate(480,640);
+    grayscaleImage.allocate(160,120);
 }
 
-void AnalizadorDeCaras::search(unsigned char * pixels, int w, int h) {
+void AnalizadorDeCaras::search(unsigned char * pixs, int w, int h) {
     if (!processing) {
-        cout << "Searching...\n";
-        ofxCvColorImage img;
-        img.allocate(w,h);
-        img.setFromPixels(pixels, w, h);
-        grayscaleImage = img;
+        pixels = pixs;
         processing = true;
-        finder.findHaarObjects(grayscaleImage); //, 80, 80);
-        cout << "threaded encontró " << finder.blobs.size() << std::endl;
     }
     
 }
 
-void AnalizadorDeCaras::search(ofxCvGrayscaleImage img) {
-    if (!processing) {
-        cout << "Searching...\n";
-        cout << img.width << " x " << img.height << std::endl;
-        //processing = true;
-        finder.findHaarObjects(img); //, 80, 80);
-        cout << "Searching encontró " << finder.blobs.size() << std::endl;
-    }
+void AnalizadorDeCaras::search(ofPixelsRef pixelsRef) {
+    grayscaleImage.setFromPixels(pixelsRef);
+    finder.findHaarObjects(grayscaleImage, 100, 100);
+    /*if (!processing) {
+        grayscaleImage.setFromPixels(pixelsRef);
+        finder.findHaarObjects(grayscaleImage, 100, 100);
+        processing = true;
+    }*/
+}
+
+void AnalizadorDeCaras::search(ofImage img) {
+    grayscaleImage.setFromPixels(img.getPixels(), img.width, img.height);
+    processing = true;
 }
 
 
@@ -48,9 +47,11 @@ void AnalizadorDeCaras::threadedFunction() {
         lock();
         
         if (processing) {
+            
+            cout << "Searching...\n";
             finder.findHaarObjects(grayscaleImage, 100, 100);
             //
-            //cout << "threaded encontró " << finder.blobs.size() << std::endl;
+             cout << "threaded encontró " << finder.blobs.size() << std::endl;
             processing = false;
         }
         unlock();

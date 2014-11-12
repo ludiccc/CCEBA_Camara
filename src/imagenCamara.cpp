@@ -26,31 +26,31 @@ void ImagenCamara::setup() {
     video.listDevices();
     video.setDeviceID(0);
     video.setDesiredFrameRate(60);
-    video.initGrabber(320,240);
+    video.initGrabber(320/2,240/2);
     
-    //analizadorDeCaras.startThread();
+    analizadorDeCaras.startThread();
 }
 
 void ImagenCamara::update() {
     
     // si el analizador no está tocando el finder, entonces copio el vector de blobs.
-    /*if (analizadorDeCaras.available()) {
+    if (analizadorDeCaras.available()) {
         blobs = analizadorDeCaras.finder.blobs;
-    }*/
+    }
     
     video.update();
     
     if (video.isFrameNew()){
-        // esta conversión es necesaria para poder hacer la detección con el OpenCV
-        //colorImg.allocate(video.width,video.height);
-        //colorImg.setFromPixels(video.getPixelsRef());
 
+        /*
         // Me fijo si el thread de análisis está libre y si es así, le cargo una imagen
         // nueva para su detección, y le aviso.
-        /*if (analizadorDeCaras.available()) {
-            ofxCvGrayscaleImage gI;
-            gI = colorImg;
-            analizadorDeCaras.search(gI);
-        }*/
+        if (analizadorDeCaras.available()) {
+            //analizadorDeCaras.search(video.getPixels(), video.width, video.height);
+            ofImage imagen;
+            imagen.setFromPixels(video.getPixels(), video.width, video.height, OF_IMAGE_COLOR);
+            analizadorDeCaras.search(imagen);
+        }
+         */
     }
 }
