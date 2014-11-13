@@ -49,6 +49,7 @@ void Motor::update() {
         
         if (estado == READY && posicionProxima > -1) {
             estado = MOVIENDO;
+            cout << "PosicionActual:" << posicionActual << " posicionProxima:" << posicionProxima << "\n";
             if (posicionActual > posicionProxima) {
                 cout << "Se movera en direccion 1..\n";
 #if !defined(__APPLE__)

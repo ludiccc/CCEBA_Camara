@@ -28,7 +28,7 @@ void ImagenCamara::setup() {
     video.setDesiredFrameRate(60);
     video.initGrabber(320/2,240/2);
     
-    analizadorDeCaras.startThread();
+    //analizadorDeCaras.startThread();
 }
 
 void ImagenCamara::update() {

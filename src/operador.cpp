@@ -9,6 +9,7 @@
 #include "operador.h"
 
 void Operador::setup(string remoteIP, int remotePort) {
+    cout << "Conectando al operador a " << remoteIP << ":" << remotePort << "\n";
     maquinaOperador.setup(remoteIP, remotePort);
     
     //estaMaquina.setup(PORT);
@@ -44,7 +45,7 @@ void Operador::threadedFunction() {
             ofxOscMessage m;
             m.setAddress("/image");
             m.addBlobArg(*buffer);
-            //maquinaOperador.sendMessage(m);
+            maquinaOperador.sendMessage(m);
             
             processing = false;
         }
