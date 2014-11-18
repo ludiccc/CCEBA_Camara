@@ -12,8 +12,6 @@
 #include <stdio.h>
 #include "ofMain.h"
 //#include "ofxHTTP.h"
-#include "analizadorDeCaras.h"
-#include "ofxCvHaarFinder.h"
 
 
 class ImagenCamara {
@@ -21,14 +19,10 @@ class ImagenCamara {
     
 public:
     ofVideoGrabber 		video;
-    ofxCvColorImage colorImg;
-    
-    vector<ofxCvBlob> blobs;
-    
+        
     void setup();
     void update();
     
-    AnalizadorDeCaras analizadorDeCaras;
     int getNumeroDeCaras();
     
 };

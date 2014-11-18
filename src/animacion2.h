@@ -26,15 +26,17 @@ public:
     int y;
     string texto;
     float escala;
-
+    
     //layout
     int margen;
     
     //tipografia
     ofTrueTypeFont tipografia_65;
     ofTrueTypeFont tipografia_36;
+    ofTrueTypeFont tipografia_30;
     ofTrueTypeFont tipografia_18;
     ofTrueTypeFont tipografia_09;
+    
     
     // circulo amarillo mediano // categorias
     ofxSVG circuloCategorias;
@@ -42,15 +44,23 @@ public:
     string dato_1;
     string dato_2;
     string dato_3;
+    string valor_1_string;
+    string valor_2_string;
+    string valor_3_string;
+    string valor_4_string;
     
     int valor_1;
+    int valor_11;
     int valor_2;
     int valor_3;
+    int valor_4;
+    int escalaCorazon;
     
     //barra magenta
     ofxSVG barraArribaMagenta;
     //barra cyan
     ofxSVG barraAbajoCyan;
+    ofxSVG barraVerticalinvertido;
     
     //barra Horizontal
     ofxSVG barraHorizontal;
@@ -58,9 +68,19 @@ public:
     
     //barras izquierda magentas
     ofxSVG grafico1;
+    ofxSVG graficoBarraVertical;
+    ofxSVG corazon;
+    
+    //circulos medios
+    ofxSVG circuloAmarillo;
+    
+    // grafico amarillo visitantes
+    ofxSVG circuloConPuntos;
+    string datoVisitantes;
+    int valorVisitantes;
     
     //test
-     ofImage pantalla;
+    ofImage pantalla;
     
     
     

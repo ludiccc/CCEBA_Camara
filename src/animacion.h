@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxSvg.h"
+#define NLetras 16
+#define NRegiones 5
 
 class Animacion {
     
@@ -37,7 +39,10 @@ public:
     ofTrueTypeFont tipografia_18;
     ofTrueTypeFont tipografia_09;
     
-    string textoQueCorre;
+    string textoQueCorre[NLetras];
+    string textoOutput;
+    string regiones[NRegiones];
+    string regionesTexto;
     
     //textos
     //int cantidadCondicionIndividuo;
@@ -86,6 +91,7 @@ public:
     float datoTipoDeVisitante2;
     float datoTipoDeVisitante3;
     float datoTipoDeVisitante4;
+    
     
     
 };

@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include "ofMain.h"
 #include "ofxSvg.h"
+#define NLetras 16
 
 
 class Animacion4 {
@@ -37,8 +38,13 @@ public:
     ofTrueTypeFont tipografia_18;
     ofTrueTypeFont tipografia_09;
     
+    int numeroDerecha;
+
+    
     //test
     ofImage pantalla;
+    string textoQueCorre[NLetras];
+    string textoOutput;
     
     
     

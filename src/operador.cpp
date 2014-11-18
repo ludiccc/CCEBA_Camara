@@ -48,10 +48,11 @@ void Operador::threadedFunction() {
             maquinaOperador.sendMessage(m);
             
             processing = false;
+            
         }
         unlock();
         
-        ofSleepMillis(100);
+        //ofSleepMillis(100);
     }
     
     // done
